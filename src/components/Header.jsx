@@ -1,55 +1,90 @@
 import { useEffect, useState } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import mgLogo from '../assets/mg-logo.svg';
 
 const NAV_LINKS = [
-  { label: 'Modelos', href: '#modelos' },
-  { label: 'Tecnología', href: '#tecnologia' },
-  { label: 'Experiencia MG', href: '#experiencia' },
-  { label: 'Test Drive', href: '#test-drive' },
-  { label: 'Postventa', href: '#postventa' },
+  { label: 'Inicio', to: '/' },
+  { label: 'Modelos', to: '/modelos' },
+  { label: 'MG World', to: '/mg-world' },
+  { label: 'MG Life', to: '/mg-life' },
+  { label: 'MG Care', to: '/mg-care' },
+  { label: 'Mantenimiento', to: '/mantenimiento' },
+  { label: 'Garantía', to: '/garantia-y-servicios' },
+];
+
+const QUICK_ACTIONS = [
+  { label: 'Cotizar', hash: '#cotizar', variant: 'primary' },
+  { label: 'Test Drive', hash: '#test-drive', variant: 'ghost' },
 ];
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.classList.add('no-scroll');
-    } else {
-      document.body.classList.remove('no-scroll');
-    }
+    document.body.classList.toggle('no-scroll', isMenuOpen);
   }, [isMenuOpen]);
+
+  const handleHashNavigation = (hash) => {
+    setIsMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/', { state: { targetId: hash.replace('#', '') } });
+      return;
+    }
+
+    const target = document.querySelector(hash);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <header className={`main-header ${isScrolled ? 'main-header--scrolled' : ''}`}>
       <div className="main-header__inner">
-        <a className="main-header__brand" href="#hero" aria-label="MG Argentina">
+        <NavLink className="main-header__brand" to="/" aria-label="MG Argentina" onClick={() => setIsMenuOpen(false)}>
           <img src={mgLogo} alt="MG" />
-        </a>
+        </NavLink>
 
         <nav className={`main-header__nav ${isMenuOpen ? 'is-open' : ''}`} aria-label="Principal">
           <ul>
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
-                <a href={link.href} onClick={() => setIsMenuOpen(false)}>
+                <NavLink
+                  to={link.to}
+                  end={link.to === '/'}
+                  className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   {link.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
-          <a className="main-header__cta" href="#concesionarios">
-            Encontrá un concesionario
-          </a>
+
+          <div className="main-header__actions">
+            {QUICK_ACTIONS.map((action) => (
+              <button
+                key={action.label}
+                type="button"
+                className={`button ${action.variant === 'ghost' ? 'button--ghost' : 'button--primary'}`}
+                onClick={() => handleHashNavigation(action.hash)}
+              >
+                {action.label}
+              </button>
+            ))}
+          </div>
         </nav>
 
         <button

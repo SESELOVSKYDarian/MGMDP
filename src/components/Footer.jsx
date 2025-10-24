@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import mgLogo from '../assets/mg-logo.svg';
 
 const Footer = () => (
-  <footer id="postventa" className="footer">
+  <footer className="footer">
     <div className="container footer__inner">
       <div className="footer__brand">
         <img src={mgLogo} alt="MG" />
@@ -9,16 +10,19 @@ const Footer = () => (
       </div>
       <div className="footer__columns">
         <div>
-          <h3>Modelos</h3>
+          <h3>Explorá</h3>
           <ul>
             <li>
-              <a href="#mg4-ficha">MG4 EV</a>
+              <Link to="/">Inicio</Link>
             </li>
             <li>
-              <a href="#hs-ficha">MG HS</a>
+              <Link to="/modelos">Modelos</Link>
             </li>
             <li>
-              <a href="#zs-ficha">MG ZS</a>
+              <Link to="/mg-world">MG World</Link>
+            </li>
+            <li>
+              <Link to="/mg-life">MG Life</Link>
             </li>
           </ul>
         </div>
@@ -26,13 +30,13 @@ const Footer = () => (
           <h3>Servicios</h3>
           <ul>
             <li>
-              <a href="#test-drive">Test Drive</a>
+              <Link to="/mg-care">MG Care</Link>
             </li>
             <li>
-              <a href="#postventa">Postventa</a>
+              <Link to="/mantenimiento">Pauta de mantenimiento</Link>
             </li>
             <li>
-              <a href="#concesionarios">Concesionarios</a>
+              <Link to="/garantia-y-servicios">Garantía &amp; servicios</Link>
             </li>
           </ul>
         </div>

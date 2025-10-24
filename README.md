@@ -1,6 +1,9 @@
 # Clon Frontend de MG Argentina
 
-Este proyecto replica la experiencia visual del sitio [mgargentina.ar](https://mgargentina.ar/) utilizando React y Vite. Incluye una landing page completa con encabezado fijo, hero inmersivo, presentación de modelos, secciones de tecnología y experiencia, además de un banner de llamado a la acción y pie de página corporativo.
+Este proyecto recrea la experiencia de navegación de [mgargentina.ar](https://mgargentina.ar/) utilizando React, Vite y React
+Router. Incluye la landing principal con secciones modulares (modelos, cotización, tecnología, red de concesionarios y test
+drive) más subpáginas dedicadas para toda la gama, MG World, MG Life, MG Care, pauta de mantenimiento y garantía/servicios.
+También se incorporan fichas técnicas emergentes con animación y accesos directos a cotización y test drive.
 
 ## Requisitos previos
 
@@ -32,21 +35,35 @@ Este proyecto replica la experiencia visual del sitio [mgargentina.ar](https://m
 │   ├── App.jsx
 │   ├── main.jsx
 │   ├── index.css
-│   └── components
-│       ├── Header.jsx
-│       ├── Hero.jsx
-│       ├── ModelsShowcase.jsx
-│       ├── TechnologySection.jsx
-│       ├── ExperienceSection.jsx
-│       ├── CtaBanner.jsx
-│       └── Footer.jsx
+│   ├── layouts
+│   │   └── MainLayout.jsx
+│   ├── components
+│   │   ├── Header.jsx
+│   │   ├── Hero.jsx
+│   │   ├── ModelsShowcase.jsx
+│   │   ├── CotizarSection.jsx
+│   │   ├── TechnologySection.jsx
+│   │   ├── ExperienceSection.jsx
+│   │   ├── CtaBanner.jsx
+│   │   └── Footer.jsx
+│   └── pages
+│       ├── Home.jsx
+│       ├── ModelsPage.jsx
+│       ├── MgWorldPage.jsx
+│       ├── MgLifePage.jsx
+│       ├── MgCarePage.jsx
+│       ├── MaintenancePage.jsx
+│       └── WarrantyPage.jsx
 └── vite.config.js
 ```
 
-## Personalización
+## Funcionalidades destacadas
 
-- Todas las imágenes de fondo provienen de Pexels y se pueden reemplazar modificando las URLs definidas en los componentes o en las reglas CSS.
-- Los contenidos de texto están en español rioplatense y pueden actualizarse directamente en los componentes correspondientes.
+- **Menú fijo responsive** con navegación entre secciones internas y subpáginas, más accesos rápidos para cotizar y test drive.
+- **Sección de modelos** con tarjetas descriptivas, botón de cotización y fichas técnicas emergentes con animación sutil.
+- **Módulo de cotización** que replica la grilla de modelos listos para solicitar propuesta comercial.
+- **Subpáginas MG** con héroes temáticos y contenido editorial para MG World, MG Life, MG Care, mantenimiento y garantía.
+- **Estilos premium y responsivos** basados en tipografía Montserrat, gradientes y rejillas adaptativas.
 
 ## Deploy
 

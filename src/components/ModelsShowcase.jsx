@@ -1,65 +1,136 @@
-const MODELS = [
+import { useState } from 'react';
+
+export const MODELS = [
   {
-    id: 'mg4',
-    name: 'MG4 EV',
-    description: '100% eléctrico con hasta 450 km de autonomía WLTP y conectividad de última generación.',
+    name: 'MG4 Electric',
+    tagline: 'Diseñado para la nueva movilidad urbana',
+    description:
+      'Plataforma modular MSP, tracción trasera y hasta 435 km de autonomía WLTP con carga rápida del 10 al 80% en 35 minutos.',
     image:
-      'https://images.pexels.com/photos/4974912/pexels-photo-4974912.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-    tag: 'Nuevo',
+      'https://images.unsplash.com/photo-1617813489745-76e8ed1d35d8?auto=format&fit=crop&w=1200&q=80',
+    highlights: ['Autonomía 435 km', '0-100 km/h en 7,9 s', 'Pantalla dual 10,25"'],
+    specs: [
+      { label: 'Batería', value: '61,1 kWh' },
+      { label: 'Potencia', value: '204 CV' },
+      { label: 'Torque', value: '250 Nm' },
+      { label: 'Seguridad', value: 'MG Pilot ADAS' },
+    ],
   },
   {
-    id: 'hs',
-    name: 'MG HS',
-    description: 'SUV mediano con diseño deportivo, motor turbo y sistemas avanzados de asistencia ADAS.',
+    name: 'MG GT',
+    tagline: 'La silueta fastback que desafía lo convencional',
+    description:
+      'Motor turbo 1.5T de 173 CV, caja DCT de 7 velocidades y un interior deportivo inspirado en el mundo racing.',
     image:
-      'https://images.pexels.com/photos/4488660/pexels-photo-4488660.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-    tag: 'Híbrido enchufable',
+      'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80',
+    highlights: ['173 CV turbo', 'Pantalla 10" + MG iSmart', '0-100 km/h en 8,5 s'],
+    specs: [
+      { label: 'Motor', value: '1.5T 173 CV' },
+      { label: 'Transmisión', value: 'DCT 7 velocidades' },
+      { label: 'Consumo mixto', value: '6,7 l/100 km' },
+      { label: 'Maletero', value: '401 litros' },
+    ],
   },
   {
-    id: 'zs',
-    name: 'MG ZS',
-    description: 'Compacto urbano con amplio equipamiento de seguridad y entretenimiento inteligente.',
+    name: 'MG RX5',
+    tagline: 'El SUV conectado para vivir grandes experiencias',
+    description:
+      'Diseño británico con grilla Stardust, motor 1.5 turbo y asistencias MG Pilot para llevar la seguridad un paso más allá.',
     image:
-      'https://images.pexels.com/photos/4489726/pexels-photo-4489726.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
-    tag: 'Best Seller',
+      'https://images.unsplash.com/photo-1617813489683-eddfea8b10ae?auto=format&fit=crop&w=1200&q=80',
+    highlights: ['Pantalla 14"', 'MG Pilot 2.0', 'Baúl 595 litros'],
+    specs: [
+      { label: 'Motor', value: '1.5T 171 CV' },
+      { label: 'Tracción', value: 'Delantera' },
+      { label: 'Consumo', value: '7,4 l/100 km' },
+      { label: 'Conectividad', value: 'Apple CarPlay & Android Auto' },
+    ],
   },
 ];
 
 const ModelsShowcase = () => {
+  const [selectedModel, setSelectedModel] = useState(null);
+
   return (
-    <section id="modelos" className="section section--light">
-      <div className="container">
-        <div className="section__header">
-          <p className="section__eyebrow">LINE-UP</p>
-          <h2>Elegí el MG que va con vos</h2>
-          <p className="section__description">
-            Cada modelo MG combina diseño sofisticado con tecnologías inteligentes y estándares de
-            seguridad globales. Descubrí la opción ideal para tu estilo de vida.
-          </p>
-        </div>
-        <div className="models-grid">
-          {MODELS.map((model) => (
-            <article key={model.id} className="model-card">
-              <span className="model-card__tag">{model.tag}</span>
-              <div className="model-card__image" style={{ backgroundImage: `url(${model.image})` }}>
-                <span className="sr-only">{model.name}</span>
-              </div>
-              <div className="model-card__body">
-                <h3>{model.name}</h3>
-                <p>{model.description}</p>
-                <div className="model-card__actions">
-                  <a href={`#${model.id}-ficha`} className="link">
-                    Ficha técnica
-                  </a>
-                  <a href="#test-drive" className="link">
-                    Reservar test drive
-                  </a>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+    <section className="modelos" id="modelos">
+      <div className="section-header">
+        <p className="eyebrow">Modelos MG</p>
+        <h2>Innovación que inspira cada viaje</h2>
+        <p>
+          Descubrí la gama MG con diseños icónicos, tecnología inteligente y
+          performance preparada para el presente y el futuro.
+        </p>
       </div>
+
+      <div className="modelos__grid">
+        {MODELS.map((model) => (
+          <article key={model.name} className="modelo-card">
+            <div
+              className="modelo-card__image"
+              style={{ backgroundImage: `url(${model.image})` }}
+              aria-hidden="true"
+            />
+            <div className="modelo-card__body">
+              <h3>{model.name}</h3>
+              <p className="modelo-card__tagline">{model.tagline}</p>
+              <p className="modelo-card__description">{model.description}</p>
+              <ul className="modelo-card__highlights">
+                {model.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+              <div className="modelo-card__actions">
+                <a className="button button--primary" href="#cotizar">
+                  Cotizar modelo
+                </a>
+                <button
+                  type="button"
+                  className="button button--ghost"
+                  onClick={() => setSelectedModel(model)}
+                >
+                  Ficha técnica
+                </button>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {selectedModel && (
+        <div
+          className="modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Ficha técnica ${selectedModel.name}`}
+          onClick={() => setSelectedModel(null)}
+        >
+          <div
+            className="modal-card"
+            onClick={(event) => event.stopPropagation()}
+            role="document"
+          >
+            <button
+              type="button"
+              className="modal-card__close"
+              aria-label="Cerrar ficha técnica"
+              onClick={() => setSelectedModel(null)}
+            >
+              ×
+            </button>
+            <p className="eyebrow">Ficha técnica</p>
+            <h3>{selectedModel.name}</h3>
+            <p className="modal-card__tagline">{selectedModel.tagline}</p>
+            <div className="modal-card__specs">
+              {selectedModel.specs.map((spec) => (
+                <div key={spec.label} className="modal-card__spec">
+                  <span>{spec.label}</span>
+                  <strong>{spec.value}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

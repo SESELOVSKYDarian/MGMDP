@@ -1,24 +1,26 @@
-import Header from './components/Header.jsx';
-import Hero from './components/Hero.jsx';
-import ModelsShowcase from './components/ModelsShowcase.jsx';
-import TechnologySection from './components/TechnologySection.jsx';
-import ExperienceSection from './components/ExperienceSection.jsx';
-import CtaBanner from './components/CtaBanner.jsx';
-import Footer from './components/Footer.jsx';
+import { Route, Routes } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout.jsx';
+import Home from './pages/Home.jsx';
+import ModelsPage from './pages/ModelsPage.jsx';
+import MgWorldPage from './pages/MgWorldPage.jsx';
+import MgLifePage from './pages/MgLifePage.jsx';
+import MgCarePage from './pages/MgCarePage.jsx';
+import MaintenancePage from './pages/MaintenancePage.jsx';
+import WarrantyPage from './pages/WarrantyPage.jsx';
 
 const App = () => {
   return (
-    <div className="app-shell">
-      <Header />
-      <main>
-        <Hero />
-        <ModelsShowcase />
-        <TechnologySection />
-        <ExperienceSection />
-        <CtaBanner />
-      </main>
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<Home />} />
+        <Route path="modelos" element={<ModelsPage />} />
+        <Route path="mg-world" element={<MgWorldPage />} />
+        <Route path="mg-life" element={<MgLifePage />} />
+        <Route path="mg-care" element={<MgCarePage />} />
+        <Route path="mantenimiento" element={<MaintenancePage />} />
+        <Route path="garantia-y-servicios" element={<WarrantyPage />} />
+      </Route>
+    </Routes>
   );
 };
 
