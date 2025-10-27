@@ -1,40 +1,84 @@
+import { Link } from 'react-router-dom';
+
 const MgCarePage = () => {
   return (
     <div className="page">
       <section className="page-hero page-hero--care">
         <div className="page-hero__content container" data-animate="fade-up">
           <p className="eyebrow">MG Care</p>
-          <h1>Servicios posventa diseñados para cuidar tu MG</h1>
+          <h1>Posventa oficial con cobertura nacional</h1>
           <p>
-            Nuestra red oficial garantiza el mantenimiento integral del vehículo con técnicos
-            certificados, repuestos originales y soporte personalizado.
+            Disfrutá de tu MG con la tranquilidad de contar con asistencia, mantenimiento programado y garantía extendida
+            durante 7 años o 150.000 km.
           </p>
+          <div className="page-hero__cta">
+            <Link className="btn btn--primary" to="/mg-care-servicios">
+              Servicios MG
+            </Link>
+            <Link className="btn btn--outline" to="/mg-care-garantia">
+              Ver garantía
+            </Link>
+          </div>
         </div>
       </section>
 
       <section className="page-section">
-        <div className="container page-columns">
-          <article data-animate="fade-right" data-animate-delay="0.12s">
-            <h2>Service programado</h2>
+        <div className="container care-overview">
+          <article data-animate="fade-right">
+            <h2>Red de concesionarios autorizados</h2>
             <p>
-              Agenda tu turno online y elegí el concesionario más conveniente. Nuestros especialistas
-              realizan diagnósticos integrales con herramientas MG.
+              Más de 30 puntos de atención equipados con herramientas MG, técnicos certificados y stock de repuestos
+              originales.
             </p>
           </article>
-          <article data-animate="fade-up" data-animate-delay="0.22s">
-            <h2>Repuestos originales</h2>
+          <article data-animate="fade-up">
+            <h2>Garantía integral</h2>
             <p>
-              Disponemos de stock permanente de piezas homologadas para asegurar performance,
-              seguridad y garantía en cada intervención.
+              Cobertura total de 7 años o 150.000 km que respalda cada componente del vehículo con asistencia en ruta 24/7.
             </p>
           </article>
-          <article data-animate="fade-left" data-animate-delay="0.32s">
-            <h2>Asistencia 24/7</h2>
+          <article data-animate="fade-left">
+            <h2>Experiencia digital</h2>
             <p>
-              MG Care ofrece cobertura de asistencia en ruta en todo el país: remolque, auxilio
-              mecánico y soporte remoto para tu tranquilidad.
+              Reservá tu turno online, recibí recordatorios automáticos y seguí el estado del servicio desde MG iSMART.
             </p>
           </article>
+        </div>
+      </section>
+
+      <section className="page-section page-section--highlight">
+        <div className="container care-banner" data-animate="fade-up">
+          <div>
+            <p className="eyebrow">MG Care Benefits</p>
+            <h2>Todo lo que necesitás para disfrutar tu MG</h2>
+            <p>
+              Cobertura nacional, vehículo de cortesía sujeto a disponibilidad, asistencia en ruta y beneficios exclusivos
+              para clientes registrados.
+            </p>
+          </div>
+          <ul>
+            <li>Agenda digital y recordatorios</li>
+            <li>Actualizaciones de software MG iSMART</li>
+            <li>Control multipunto en cada visita</li>
+            <li>Programa de fidelización MG Life</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="page-section">
+        <div className="container care-links" data-animate="fade-up">
+          <Link className="care-links__card" to="/mg-care-servicios">
+            <span>Servicios</span>
+            <strong>Turnos y reparaciones</strong>
+          </Link>
+          <Link className="care-links__card" to="/mg-care-pauta-de-mantenimiento">
+            <span>Pauta MG</span>
+            <strong>Mantenimiento programado</strong>
+          </Link>
+          <Link className="care-links__card" to="/mg-care-garantia">
+            <span>Garantía</span>
+            <strong>Condiciones oficiales</strong>
+          </Link>
         </div>
       </section>
     </div>

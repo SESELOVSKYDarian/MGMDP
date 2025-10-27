@@ -1,50 +1,54 @@
-const maintenancePlan = [
-  {
-    mileage: '10.000 km o 12 meses',
-    tasks: ['Cambio de aceite y filtro', 'Chequeo de frenos', 'Diagnóstico electrónico'],
-  },
-  {
-    mileage: '20.000 km o 24 meses',
-    tasks: ['Rotación de neumáticos', 'Filtro de habitáculo', 'Actualización de software MG iSmart'],
-  },
-  {
-    mileage: '40.000 km o 48 meses',
-    tasks: ['Filtro de combustible', 'Reemplazo de refrigerante', 'Alineación y balanceo'],
-  },
-];
-
 const MaintenancePage = () => {
   return (
     <div className="page">
       <section className="page-hero page-hero--maintenance">
         <div className="page-hero__content container" data-animate="fade-up">
           <p className="eyebrow">Pauta de mantenimiento</p>
-          <h1>Plan oficial para mantener tu MG como nuevo</h1>
+          <h1>Plan oficial cada 10.000 kilómetros</h1>
           <p>
-            Seguimos un programa preventivo diseñado por ingenieros MG a nivel global. Conocé las
-            intervenciones recomendadas según kilometraje para asegurar performance y garantía.
+            Seguí el cronograma de servicios MG para preservar la garantía y asegurar el rendimiento óptimo de tu vehículo.
+            Todos los trabajos incluyen repuestos originales y mano de obra especializada.
           </p>
         </div>
       </section>
 
       <section className="page-section">
-        <div className="container">
-          <div className="maintenance-table">
-            {maintenancePlan.map((item, index) => (
-              <article
-                key={item.mileage}
-                data-animate="fade-up"
-                data-animate-delay={`${0.12 * index + 0.15}s`}
-              >
-                <h2>{item.mileage}</h2>
-                <ul>
-                  {item.tasks.map((task) => (
-                    <li key={task}>{task}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
+        <div className="container maintenance-table">
+          <article data-animate="fade-right">
+            <h2>Servicio 10.000 km</h2>
+            <ul>
+              <li>Cambio de aceite, filtro y revisión de fluidos</li>
+              <li>Chequeo de frenos, neumáticos y suspensión</li>
+              <li>Actualización de software MG iSMART</li>
+            </ul>
+          </article>
+          <article data-animate="fade-up">
+            <h2>Servicio 20.000 km</h2>
+            <ul>
+              <li>Reemplazo de filtros de aire y habitáculo</li>
+              <li>Alineación, balanceo y calibración de sensores</li>
+              <li>Diagnóstico electrónico completo</li>
+            </ul>
+          </article>
+          <article data-animate="fade-left">
+            <h2>Servicio 40.000 km</h2>
+            <ul>
+              <li>Reemplazo de bujías y correas auxiliares</li>
+              <li>Purga de líquido de frenos y refrigerante</li>
+              <li>Control de seguridad MG Pilot</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section className="page-section">
+        <div className="container maintenance-notes" data-animate="fade-up">
+          <h2>Consejos MG Care</h2>
+          <ul>
+            <li>Respetá los intervalos de tiempo aunque no alcances el kilometraje indicado.</li>
+            <li>Registrá cada servicio en tu cuaderno de mantenimiento para conservar la garantía.</li>
+            <li>Utilizá siempre repuestos originales MG para mantener la performance y seguridad.</li>
+          </ul>
         </div>
       </section>
     </div>

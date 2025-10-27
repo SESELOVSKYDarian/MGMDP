@@ -4,37 +4,51 @@ const MgLifePage = () => {
       <section className="page-hero page-hero--life">
         <div className="page-hero__content container" data-animate="fade-up">
           <p className="eyebrow">MG Life</p>
-          <h1>Estilo, cultura y experiencias MG en primera persona</h1>
+          <h1>Historias y estilo de vida MG</h1>
           <p>
-            Descubrí contenidos editoriales, rutas recomendadas y entrevistas con referentes que
-            comparten el espíritu MG: energía, diseño y libertad.
+            Contenidos, colaboraciones y experiencias que celebran la creatividad y el espíritu joven de la marca.
           </p>
         </div>
       </section>
 
       <section className="page-section">
-        <div className="container page-columns">
-          <article data-animate="fade-right" data-animate-delay="0.12s">
-            <h2>Rutas imperdibles</h2>
+        <div className="container mg-life__grid">
+          <article data-animate="fade-right">
+            <span>Colaboraciones</span>
+            <h2>MG x Diseño</h2>
             <p>
-              Itinerarios diseñados por especialistas para sacar el máximo provecho de tu MG. Paisajes
-              de montaña, escapadas urbanas y viajes largos con puntos de carga identificados.
+              Proyectos con artistas y diseñadores emergentes que reinterpretan el ADN británico de MG.
             </p>
           </article>
-          <article data-animate="fade-up" data-animate-delay="0.22s">
-            <h2>Historias de conductores</h2>
+          <article data-animate="fade-up">
+            <span>Inspiración</span>
+            <h2>Rutas recomendadas</h2>
             <p>
-              Protagonistas que eligen MG cuentan cómo la marca acompaña su día a día. Inspirate con
-              experiencias reales y sumá tus propias aventuras a la comunidad.
+              Viajes curados por la comunidad MG Owners con paisajes icónicos y puntos gastronómicos.
             </p>
           </article>
-          <article data-animate="fade-left" data-animate-delay="0.32s">
-            <h2>Contenido exclusivo</h2>
+          <article data-animate="fade-left">
+            <span>Contenido</span>
+            <h2>MG Podcast</h2>
             <p>
-              Wallpapers, playlists y behind the scenes para vivir la marca más allá del volante.
-              Suscribite al newsletter MG Life para recibir novedades antes que nadie.
+              Entrevistas con referentes de la movilidad, la música y el diseño que marcan tendencia.
             </p>
           </article>
+        </div>
+      </section>
+
+      <section className="page-section page-section--highlight">
+        <div className="container mg-life__stories" data-animate="fade-up">
+          <div>
+            <p className="eyebrow">MG Stories</p>
+            <h2>Sumate a la comunidad</h2>
+            <p>
+              Compartí tu experiencia MG con el hashtag #MGStories y participá por invitaciones a eventos exclusivos.
+            </p>
+          </div>
+          <a className="button button--primary" href="https://www.instagram.com/mg_argentina/" target="_blank" rel="noreferrer">
+            Seguir en Instagram
+          </a>
         </div>
       </section>
     </div>

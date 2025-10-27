@@ -1,9 +1,9 @@
 # Clon Frontend de MG Argentina
 
 Este proyecto recrea la experiencia de navegación de [mgargentina.ar](https://mgargentina.ar/) utilizando React, Vite y React
-Router. Incluye la landing principal con secciones modulares (modelos, cotización, tecnología, red de concesionarios y test
-drive) más subpáginas dedicadas para toda la gama, MG World, MG Life, MG Care, pauta de mantenimiento y garantía/servicios.
-También se incorporan fichas técnicas emergentes con animación y accesos directos a cotización y test drive.
+Router. Incluye la landing principal con hero slider, secciones modulares (modelos, cotización, tecnología, red de
+concesionarios y test drive) más subpáginas dedicadas para Modelos, MG World, MG Life, MG Care, Servicios, Pauta de
+mantenimiento y Garantía. También se incorporan fichas técnicas emergentes con animación y accesos directos a cotizar.
 
 ## Requisitos previos
 
@@ -52,6 +52,7 @@ También se incorporan fichas técnicas emergentes con animación y accesos dire
 │       ├── MgWorldPage.jsx
 │       ├── MgLifePage.jsx
 │       ├── MgCarePage.jsx
+│       ├── ServicesPage.jsx
 │       ├── MaintenancePage.jsx
 │       └── WarrantyPage.jsx
 └── vite.config.js
@@ -59,10 +60,11 @@ También se incorporan fichas técnicas emergentes con animación y accesos dire
 
 ## Funcionalidades destacadas
 
-- **Menú fijo responsive** con navegación entre secciones internas y subpáginas, más accesos rápidos para cotizar y test drive.
+- **Navbar fijo responsive** replicando la jerarquía del sitio oficial: logo con retorno al home, submenús MG World/MG Care y botón "Cotizá tu MG".
 - **Sección de modelos** con tarjetas descriptivas, botón de cotización y fichas técnicas emergentes con animación sutil.
+- **Hero slider** con tres destacados MG (ZS EV, GT, HS), navegación por flechas, indicadores y autoplay accesible.
 - **Módulo de cotización** que replica la grilla de modelos listos para solicitar propuesta comercial.
-- **Subpáginas MG** con héroes temáticos y contenido editorial para MG World, MG Life, MG Care, mantenimiento y garantía.
+- **Subpáginas MG** con héroes temáticos y contenido editorial para MG World, MG Life, MG Care, Servicios, Pauta de mantenimiento y Garantía.
 - **Estilos premium y responsivos** basados en tipografía Montserrat, gradientes y rejillas adaptativas.
 
 ## Deploy

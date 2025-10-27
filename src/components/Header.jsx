@@ -1,20 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import mgLogo from '../assets/mg-logo.svg';
 
-const NAV_LINKS = [
-  { label: 'Inicio', to: '/' },
+const NAV_ITEMS = [
   { label: 'Modelos', to: '/modelos' },
-  { label: 'MG World', to: '/mg-world' },
-  { label: 'MG Life', to: '/mg-life' },
-  { label: 'MG Care', to: '/mg-care' },
-  { label: 'Mantenimiento', to: '/mantenimiento' },
-  { label: 'Garantía', to: '/garantia-y-servicios' },
-];
-
-const QUICK_ACTIONS = [
-  { label: 'Cotizar', hash: '#cotizar', variant: 'primary' },
-  { label: 'Test Drive', hash: '#test-drive', variant: 'ghost' },
+  {
+    label: 'MG World',
+    to: '/mg-world',
+    children: [
+      { label: 'MG World', to: '/mg-world' },
+      { label: 'MG Life', to: '/mg-life' },
+    ],
+  },
+  {
+    label: 'MG Care',
+    to: '/mg-care',
+    children: [
+      { label: 'Servicios', to: '/mg-care-servicios' },
+      { label: 'Pauta de mantenimiento', to: '/mg-care-pauta-de-mantenimiento' },
+      { label: 'Garantía', to: '/mg-care-garantia' },
+    ],
+  },
 ];
 
 const Header = () => {
@@ -22,6 +28,14 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const dropdownLabels = useMemo(
+    () => NAV_ITEMS.filter((item) => item.children).map((item) => item.label),
+    [],
+  );
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(min-width: 1024px)').matches : true,
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +51,36 @@ const Header = () => {
     document.body.classList.toggle('no-scroll', isMenuOpen);
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const media = window.matchMedia('(min-width: 1024px)');
+    const handleChange = (event) => {
+      setIsDesktop(event.matches);
+      setOpenDropdown(null);
+      if (event.matches) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (media.addEventListener) {
+      media.addEventListener('change', handleChange);
+    } else {
+      media.addListener(handleChange);
+    }
+
+    return () => {
+      if (media.removeEventListener) {
+        media.removeEventListener('change', handleChange);
+      } else {
+        media.removeListener(handleChange);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    setOpenDropdown(null);
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
   const handleHashNavigation = (hash) => {
     setIsMenuOpen(false);
     if (location.pathname !== '/') {
@@ -50,6 +94,18 @@ const Header = () => {
     }
   };
 
+  const toggleDropdown = (label) => {
+    if (isDesktop) return;
+    setOpenDropdown((prev) => (prev === label ? null : label));
+  };
+
+  const handleNavClick = (itemLabel) => {
+    if (!isDesktop && dropdownLabels.includes(itemLabel)) {
+      setOpenDropdown(null);
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <header className={`main-header ${isScrolled ? 'main-header--scrolled' : ''}`}>
       <div className="main-header__inner">
@@ -59,31 +115,42 @@ const Header = () => {
 
         <nav className={`main-header__nav ${isMenuOpen ? 'is-open' : ''}`} aria-label="Principal">
           <ul>
-            {NAV_LINKS.map((link) => (
-              <li key={link.label}>
-                <NavLink
-                  to={link.to}
-                  end={link.to === '/'}
-                  className={({ isActive }) => (isActive ? 'is-active' : undefined)}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
-                </NavLink>
+            {NAV_ITEMS.map((item) => (
+              <li key={item.label} className={`nav-item ${item.children ? 'has-children' : ''} ${openDropdown === item.label ? 'is-open' : ''}`}>
+                <div className="nav-item__trigger">
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+                    onClick={() => handleNavClick(item.label)}
+                  >
+                    {item.label}
+                  </NavLink>
+                  {item.children && (
+                    <button type="button" aria-label={`Abrir ${item.label}`} onClick={() => toggleDropdown(item.label)}>
+                      <span />
+                    </button>
+                  )}
+                </div>
+
+                {item.children && (
+                  <ul className="nav-item__dropdown">
+                    {item.children.map((child) => (
+                      <li key={child.to}>
+                        <NavLink to={child.to} onClick={() => handleNavClick(item.label)} className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
+                          {child.label}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>
 
           <div className="main-header__actions">
-            {QUICK_ACTIONS.map((action) => (
-              <button
-                key={action.label}
-                type="button"
-                className={`button ${action.variant === 'ghost' ? 'button--ghost' : 'button--primary'}`}
-                onClick={() => handleHashNavigation(action.hash)}
-              >
-                {action.label}
-              </button>
-            ))}
+            <button type="button" className="button button--primary" onClick={() => handleHashNavigation('#cotizar')}>
+              Cotizá tu MG
+            </button>
           </div>
         </nav>
 

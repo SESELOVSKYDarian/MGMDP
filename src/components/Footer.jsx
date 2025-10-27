@@ -33,10 +33,13 @@ const Footer = () => (
               <Link to="/mg-care">MG Care</Link>
             </li>
             <li>
-              <Link to="/mantenimiento">Pauta de mantenimiento</Link>
+              <Link to="/mg-care-servicios">Servicios</Link>
             </li>
             <li>
-              <Link to="/garantia-y-servicios">Garantía &amp; servicios</Link>
+              <Link to="/mg-care-pauta-de-mantenimiento">Pauta de mantenimiento</Link>
+            </li>
+            <li>
+              <Link to="/mg-care-garantia">Garantía</Link>
             </li>
           </ul>
         </div>

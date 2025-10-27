@@ -2,48 +2,51 @@ import { useState } from 'react';
 
 export const MODELS = [
   {
-    name: 'MG4 Electric',
-    tagline: 'Diseñado para la nueva movilidad urbana',
+    slug: 'mg-zs-ev',
+    name: 'MG ZS EV',
+    tagline: 'La SUV 100% eléctrica pensada para el día a día',
     description:
-      'Plataforma modular MSP, tracción trasera y hasta 435 km de autonomía WLTP con carga rápida del 10 al 80% en 35 minutos.',
+      'Batería de iones de litio de 51 kWh con autonomía de hasta 320 km WLTP, torque instantáneo y MG iSMART con actualizaciones OTA.',
     image:
-      'https://images.unsplash.com/photo-1617813489745-76e8ed1d35d8?auto=format&fit=crop&w=1200&q=80',
-    highlights: ['Autonomía 435 km', '0-100 km/h en 7,9 s', 'Pantalla dual 10,25"'],
+      'https://res.cloudinary.com/dxjubrqnd/image/upload/v1706828558/mg-argentina/modelo-mg-zs-ev.jpg',
+    highlights: ['Autonomía 320 km', 'Carga rápida 40 min', 'MG Pilot con 5 asistencias'],
     specs: [
-      { label: 'Batería', value: '61,1 kWh' },
-      { label: 'Potencia', value: '204 CV' },
-      { label: 'Torque', value: '250 Nm' },
-      { label: 'Seguridad', value: 'MG Pilot ADAS' },
+      { label: 'Potencia', value: '177 CV' },
+      { label: 'Torque', value: '280 Nm' },
+      { label: 'Batería', value: '51 kWh' },
+      { label: 'Conectividad', value: 'MG iSMART' },
     ],
   },
   {
+    slug: 'mg-gt',
     name: 'MG GT',
-    tagline: 'La silueta fastback que desafía lo convencional',
+    tagline: 'Performance deportiva con espíritu británico',
     description:
-      'Motor turbo 1.5T de 173 CV, caja DCT de 7 velocidades y un interior deportivo inspirado en el mundo racing.',
+      'Silueta fastback, motor 1.5T de 173 CV y un interior envolvente con butacas deportivas y doble pantalla flotante.',
     image:
-      'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80',
-    highlights: ['173 CV turbo', 'Pantalla 10" + MG iSmart', '0-100 km/h en 8,5 s'],
+      'https://res.cloudinary.com/dxjubrqnd/image/upload/v1706828558/mg-argentina/modelo-mg-gt.jpg',
+    highlights: ['Motor 1.5T 173 CV', 'Caja DCT 7 vel.', 'MG Pilot con 10 asistencias'],
     specs: [
-      { label: 'Motor', value: '1.5T 173 CV' },
-      { label: 'Transmisión', value: 'DCT 7 velocidades' },
-      { label: 'Consumo mixto', value: '6,7 l/100 km' },
-      { label: 'Maletero', value: '401 litros' },
+      { label: '0-100 km/h', value: '8,5 segundos' },
+      { label: 'Consumo', value: '6,7 l/100 km' },
+      { label: 'Pantalla', value: '10,1" con Android Auto' },
+      { label: 'Baúl', value: '401 litros' },
     ],
   },
   {
-    name: 'MG RX5',
-    tagline: 'El SUV conectado para vivir grandes experiencias',
+    slug: 'mg-hs',
+    name: 'MG HS',
+    tagline: 'SUV premium con tecnología MG Pilot',
     description:
-      'Diseño británico con grilla Stardust, motor 1.5 turbo y asistencias MG Pilot para llevar la seguridad un paso más allá.',
+      'Habitáculo amplio, acabados soft touch y paquete MG Pilot con 12 asistencias ADAS para viajar con tranquilidad.',
     image:
-      'https://images.unsplash.com/photo-1617813489683-eddfea8b10ae?auto=format&fit=crop&w=1200&q=80',
-    highlights: ['Pantalla 14"', 'MG Pilot 2.0', 'Baúl 595 litros'],
+      'https://res.cloudinary.com/dxjubrqnd/image/upload/v1706828558/mg-argentina/modelo-mg-hs.jpg',
+    highlights: ['Motor 1.5T 162 CV', 'MG Pilot 12 asistencias', 'Techo panorámico'],
     specs: [
-      { label: 'Motor', value: '1.5T 171 CV' },
+      { label: 'Transmisión', value: 'DCT 7 velocidades' },
       { label: 'Tracción', value: 'Delantera' },
-      { label: 'Consumo', value: '7,4 l/100 km' },
-      { label: 'Conectividad', value: 'Apple CarPlay & Android Auto' },
+      { label: 'Pantalla', value: '12,3" + 10,1" dual' },
+      { label: 'Garantía', value: '7 años o 150.000 km' },
     ],
   },
 ];
@@ -69,6 +72,7 @@ const ModelsShowcase = () => {
             className="modelo-card"
             data-animate="fade-up"
             data-animate-delay={`${0.12 * (index + 1)}s`}
+            id={model.slug}
           >
             <div
               className="modelo-card__image"
