@@ -25,7 +25,7 @@ const QUOTE_MODELS = [
 const CotizarSection = () => {
   return (
     <section className="cotizar" id="cotizar">
-      <div className="container cotizar__header">
+      <div className="container cotizar__header" data-animate="fade-up">
         <p className="eyebrow">Cotizá tu MG</p>
         <h2>Elegí el modelo que querés manejar</h2>
         <p>
@@ -35,8 +35,13 @@ const CotizarSection = () => {
       </div>
 
       <div className="container cotizar__grid">
-        {QUOTE_MODELS.map((model) => (
-          <article key={model.name} className="cotizar-card">
+        {QUOTE_MODELS.map((model, index) => (
+          <article
+            key={model.name}
+            className="cotizar-card"
+            data-animate="fade-up"
+            data-animate-delay={`${0.14 * (index + 1)}s`}
+          >
             <div
               className="cotizar-card__image"
               style={{ backgroundImage: `url(${model.image})` }}

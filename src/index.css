@@ -58,6 +58,56 @@ main {
   flex: 1;
 }
 
+.reveal {
+  opacity: 0;
+  transform: var(--reveal-transform, translateY(48px));
+  transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.9s ease,
+    filter 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform, opacity, filter;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal--fade-up {
+  --reveal-transform: translateY(56px);
+}
+
+.reveal--fade-down {
+  --reveal-transform: translateY(-56px);
+}
+
+.reveal--fade-left {
+  --reveal-transform: translateX(64px);
+}
+
+.reveal--fade-right {
+  --reveal-transform: translateX(-64px);
+}
+
+.reveal--zoom-in {
+  --reveal-transform: scale(0.92);
+}
+
+.reveal--blur-in {
+  --reveal-transform: translateY(40px);
+  filter: blur(12px);
+}
+
+.reveal--blur-in.is-visible {
+  filter: blur(0);
+}
+
+[data-animate] {
+  opacity: 0;
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+}
+
 .main-header {
   position: fixed;
   top: 0;
@@ -429,15 +479,15 @@ main {
 
 .modelos__grid {
   display: grid;
-  gap: 2.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .modelo-card {
   background: #fff;
-  border-radius: 26px;
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 28px 55px rgba(15, 17, 26, 0.12);
+  box-shadow: 0 22px 45px rgba(15, 17, 26, 0.12);
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -445,26 +495,26 @@ main {
 }
 
 .modelo-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 36px 65px rgba(15, 17, 26, 0.18);
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(15, 17, 26, 0.18);
 }
 
 .modelo-card__image {
-  padding-top: 62%;
+  padding-top: 55%;
   background-size: cover;
   background-position: center;
 }
 
 .modelo-card__body {
-  padding: 2.25rem;
+  padding: 1.8rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .modelo-card__body h3 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.55rem;
 }
 
 .modelo-card__tagline {
@@ -472,14 +522,15 @@ main {
   font-weight: 600;
   color: var(--mg-red);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
 }
 
 .modelo-card__description {
   margin: 0;
   color: rgba(25, 25, 33, 0.72);
-  line-height: 1.7;
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
 .modelo-card__highlights {
@@ -488,20 +539,20 @@ main {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
+  gap: 0.6rem 1rem;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .modelo-card__highlights li::before {
   content: '•';
-  margin-right: 0.5rem;
+  margin-right: 0.45rem;
   color: var(--mg-red);
 }
 
 .modelo-card__actions {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
@@ -1069,3 +1120,4 @@ main {
     align-items: flex-start;
   }
 }
+

@@ -19,7 +19,7 @@ const WarrantyPage = () => {
   return (
     <div className="page">
       <section className="page-hero page-hero--warranty">
-        <div className="page-hero__content container">
+        <div className="page-hero__content container" data-animate="fade-up">
           <p className="eyebrow">Garantía &amp; Servicios</p>
           <h1>Confianza MG respaldada por una cobertura líder</h1>
           <p>
@@ -31,8 +31,12 @@ const WarrantyPage = () => {
 
       <section className="page-section">
         <div className="container page-columns">
-          {coverage.map((item) => (
-            <article key={item.title}>
+          {coverage.map((item, index) => (
+            <article
+              key={item.title}
+              data-animate="fade-up"
+              data-animate-delay={`${0.12 * index + 0.18}s`}
+            >
               <h2>{item.title}</h2>
               <p>{item.description}</p>
             </article>

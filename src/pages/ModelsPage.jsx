@@ -5,7 +5,7 @@ const ModelsPage = () => {
   return (
     <div className="page">
       <section className="page-hero page-hero--models">
-        <div className="page-hero__content container">
+        <div className="page-hero__content container" data-animate="fade-up">
           <p className="eyebrow">Gama MG</p>
           <h1>Todos los modelos disponibles en Argentina</h1>
           <p>
@@ -17,8 +17,13 @@ const ModelsPage = () => {
 
       <section className="page-section">
         <div className="container page-grid">
-          {MODELS.map((model) => (
-            <article key={model.name} className="detail-card">
+          {MODELS.map((model, index) => (
+            <article
+              key={model.name}
+              className="detail-card"
+              data-animate="fade-up"
+              data-animate-delay={`${0.1 * index + 0.1}s`}
+            >
               <h2>{model.name}</h2>
               <p className="detail-card__tagline">{model.tagline}</p>
               <p>{model.description}</p>

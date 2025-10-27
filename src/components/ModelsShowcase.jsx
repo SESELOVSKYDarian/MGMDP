@@ -53,7 +53,7 @@ const ModelsShowcase = () => {
 
   return (
     <section className="modelos" id="modelos">
-      <div className="section-header">
+      <div className="section-header" data-animate="fade-up">
         <p className="eyebrow">Modelos MG</p>
         <h2>Innovación que inspira cada viaje</h2>
         <p>
@@ -63,8 +63,13 @@ const ModelsShowcase = () => {
       </div>
 
       <div className="modelos__grid">
-        {MODELS.map((model) => (
-          <article key={model.name} className="modelo-card">
+        {MODELS.map((model, index) => (
+          <article
+            key={model.name}
+            className="modelo-card"
+            data-animate="fade-up"
+            data-animate-delay={`${0.12 * (index + 1)}s`}
+          >
             <div
               className="modelo-card__image"
               style={{ backgroundImage: `url(${model.image})` }}

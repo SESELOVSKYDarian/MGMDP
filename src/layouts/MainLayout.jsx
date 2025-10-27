@@ -30,6 +30,58 @@ const MainLayout = () => {
     }
   }, [location.hash, location.pathname]);
 
+  useEffect(() => {
+    const animatedElements = document.querySelectorAll('[data-animate]');
+
+    if (!animatedElements.length) {
+      return undefined;
+    }
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' && window.matchMedia
+        ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        : false;
+
+    if (prefersReducedMotion || typeof IntersectionObserver === 'undefined') {
+      animatedElements.forEach((element) => {
+        element.classList.add('is-visible');
+      });
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px',
+      },
+    );
+
+    animatedElements.forEach((element) => {
+      const animation = element.dataset.animate || 'fade-up';
+
+      element.classList.remove('is-visible');
+      element.classList.add('reveal', `reveal--${animation}`);
+
+      if (element.dataset.animateDelay) {
+        element.style.transitionDelay = element.dataset.animateDelay;
+      } else {
+        element.style.removeProperty('transition-delay');
+      }
+
+      observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [location.pathname]);
+
   return (
     <div className="app-shell">
       <Header />

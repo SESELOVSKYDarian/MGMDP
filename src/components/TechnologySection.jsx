@@ -19,8 +19,8 @@ const TECHNOLOGY_ITEMS = [
 const TechnologySection = () => (
   <section id="tecnologia" className="section">
     <div className="container technology">
-      <div className="technology__media" role="presentation" aria-hidden="true" />
-      <div className="technology__content">
+      <div className="technology__media" role="presentation" aria-hidden="true" data-animate="fade-right" />
+      <div className="technology__content" data-animate="fade-left">
         <p className="section__eyebrow">TECNOLOGÍA MG</p>
         <h2>Innovación pensada para el conductor</h2>
         <p className="section__description">
@@ -28,8 +28,8 @@ const TechnologySection = () => (
           El resultado: vehículos confiables, conectados y listos para el futuro.
         </p>
         <ul className="technology__features">
-          {TECHNOLOGY_ITEMS.map((item) => (
-            <li key={item.title}>
+          {TECHNOLOGY_ITEMS.map((item, index) => (
+            <li key={item.title} data-animate="fade-up" data-animate-delay={`${0.1 * index + 0.2}s`}>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </li>

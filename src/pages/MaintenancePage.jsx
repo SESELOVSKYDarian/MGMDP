@@ -17,7 +17,7 @@ const MaintenancePage = () => {
   return (
     <div className="page">
       <section className="page-hero page-hero--maintenance">
-        <div className="page-hero__content container">
+        <div className="page-hero__content container" data-animate="fade-up">
           <p className="eyebrow">Pauta de mantenimiento</p>
           <h1>Plan oficial para mantener tu MG como nuevo</h1>
           <p>
@@ -30,8 +30,12 @@ const MaintenancePage = () => {
       <section className="page-section">
         <div className="container">
           <div className="maintenance-table">
-            {maintenancePlan.map((item) => (
-              <article key={item.mileage}>
+            {maintenancePlan.map((item, index) => (
+              <article
+                key={item.mileage}
+                data-animate="fade-up"
+                data-animate-delay={`${0.12 * index + 0.15}s`}
+              >
                 <h2>{item.mileage}</h2>
                 <ul>
                   {item.tasks.map((task) => (
